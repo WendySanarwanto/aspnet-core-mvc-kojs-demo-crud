@@ -1,0 +1,20 @@
+.list-heading {
+    background-color: #ddd;
+    border: 1px solid #999999;
+}
+
+.list-cell {
+    border: 1px solid #eee;
+}
+
+/* .list-cell-item {
+    display: inline-block; 
+    height: 100%; 
+    width: 100%;
+    background-color: #e1eb34;
+} */
+
+.list-cell-item {
+    margin-top: 0.5em;
+    margin-bottom: -2.5em !important;
+}
