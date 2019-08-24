@@ -55,8 +55,12 @@
         </div>
     </div>
     <div class="text-right" style="margin-top: 1em;">
-        <button type="button" class="btn btn-success" title="Submit to Server"><i class="fa fa-cloud-upload-alt"></i>&nbsp;&nbsp;Submit</button>
-        <button type="button" class="btn btn-primary" title="Add a new Product on list"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Add</button>
+        <button type="button" class="btn btn-success" title="Submit to Server" data-bind="click: doSubmit">
+            <i class="fa fa-cloud-upload-alt"></i>&nbsp;&nbsp;Submit
+        </button>
+        <button type="button" class="btn btn-primary" title="Add a new Product on list" data-bind="click: addNewProduct">
+            <i class="fa fa-plus-square"></i>&nbsp;&nbsp;Add
+        </button>
     </div>
 </section>
 @section scripts{

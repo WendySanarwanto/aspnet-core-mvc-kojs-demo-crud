@@ -21,6 +21,10 @@ class ProductsViewModel {
         alert('Add new product is not implemented !');
     }
 
+    doSubmit() {
+        alert('Submit Products to server is not implemented !');
+    }
+
     removeProduct = (product) => {
         const self = this;
         self.products.remove(product);
