@@ -7,5 +7,6 @@ namespace aspnet_core_mvc_kojs_demo_crud.Services
     public interface IProductService
     {
          Task<DoGetProductsResponse> DoGetProducts(DoGetProductsRequest request = null);
+         Task<DoSaveResponse> DoSave(DoSaveRequest request);
     }
 }

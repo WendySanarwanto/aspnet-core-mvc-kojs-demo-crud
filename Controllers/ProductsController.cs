@@ -32,11 +32,12 @@ namespace aspnet_core_mvc_kojs_demo_crud.Controllers
             });
         }
 
-        // [HttpPost]
-        // public async Task<IActionResult> Index([FromBody] ProductsDTO request) {
-        //     var updatedProducts = await _productService.DoSave(request);
-        //     return new ObjectResult(updatedProducts);
-        // }
-
+        [HttpPost]
+        public async Task<IActionResult> Index([FromBody] ProductsDTO request) {
+            var doSaveResponse = await _productService.DoSave(new DoSaveRequest { ProductsDTO = request });
+            return doSaveResponse.IsSuccess ? 
+                    new ObjectResult(doSaveResponse.UpdatedProducts) :
+                    new  ObjectResult(new { Message = doSaveResponse.Message });
+        }
     }
 }
