@@ -18,9 +18,7 @@ class ProductsViewModel {
             console.log(`[debug] - self.products(): \n`, self.products()); 
 
             self.filteredProducts = ko.computed(() => {
-                const filteredProducts = ko.utils.arrayFilter(this.products(), product => !product.IsDeleted());
-                debugger;
-                return filteredProducts;
+                return ko.utils.arrayFilter(this.products(), product => !product.IsDeleted());
             });            
         }
     }
@@ -35,7 +33,6 @@ class ProductsViewModel {
 
     removeProduct = (product) => {
         const self = this;
-        debugger;
         // Remove the product if id is negative
         if (product.Id() < 0) {
             self.products.remove(product);
@@ -53,5 +50,7 @@ class ProductsViewModel {
                 number++;
             }
         });
+
+        // debugger;
     }
 }
