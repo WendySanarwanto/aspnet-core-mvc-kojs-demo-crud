@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+
 using aspnet_core_mvc_kojs_demo_crud.Models;
 
 namespace aspnet_core_mvc_kojs_demo_crud.Controllers
