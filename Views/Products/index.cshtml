@@ -26,10 +26,9 @@
             </div>
             <div class="col-md-1 text-center list-heading"></div>
         </div>
-        <div data-bind="foreach: products">
+        <div data-bind="foreach: filteredProducts">
             <div class="row">
-                <div class="col-md-1 text-center list-cell">
-                    <!-- <span style="margin-top: 0.5em" data-bind="text: Number"></span>                 -->
+                <div class="col-md-1 text-center list-cell">                    
                     <label data-bind="text: Number" style="margin-top: 1em"></label>
                 </div>
                 <div class="col-md-6 list-cell">
@@ -66,7 +65,6 @@
 @section scripts{
     <script>
         var model = @Html.Raw(@Json.Serialize(ViewData.Model, jsonSerialiserSettings));
-        // TODO: Instantiate KO ViewModel and apply to KO
         var productsVm = new ProductsViewModel(model);
         ko.applyBindings(productsVm);
     </script>
