@@ -7,7 +7,7 @@ class ProductsViewModel {
                 const numberedProduct = {                    
                     Number: ko.observable(_number),
                     ...p,
-                    IsDirty: ko.observable(false),
+                    // IsDirty: ko.observable(false),
                     IsDeleted: ko.observable(false),
                 };
 
@@ -18,7 +18,7 @@ class ProductsViewModel {
             console.log(`[debug] - self.products(): \n`, self.products()); 
 
             self.filteredProducts = ko.computed(() => {
-                return ko.utils.arrayFilter(this.products(), product => !product.IsDeleted());
+                return ko.utils.arrayFilter(this.products(), product => !product._destroy);
             });            
         }
     }
@@ -33,19 +33,14 @@ class ProductsViewModel {
 
     removeProduct = (product) => {
         const self = this;
-        // Remove the product if id is negative
-        if (product.Id() < 0) {
-            self.products.remove(product);
-        }
+        self.products.destroy(product);
 
-        // update number column & IsDeleted to true if Id is not negative.
+        // update number column:
         // We don't want to remove the to-be-deleted original record. 
         // Because we want to be able to tell backend the to-be-deleted original record(s)
         let number = 1;
         ko.utils.arrayForEach(self.filteredProducts(), _product => {
-            if ( (product.Id() === _product.Id()) && (_product.Id() > 0) ){
-                _product.IsDeleted(true);
-            } else {
+            if (!_product._destroy){
                 _product.Number(number);
                 number++;
             }
