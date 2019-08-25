@@ -1,21 +1,42 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using aspnet_core_mvc_kojs_demo_crud.Repositories;
+using aspnet_core_mvc_kojs_demo_crud.DTO;
+using aspnet_core_mvc_kojs_demo_crud.Models;
+using aspnet_core_mvc_kojs_demo_crud.Services;
+using aspnet_core_mvc_kojs_demo_crud.Services.Messages;
 using aspnet_core_mvc_kojs_demo_crud.ViewModels;
 
 namespace aspnet_core_mvc_kojs_demo_crud.Controllers 
 {
     public class ProductsController : Controller {
+        private readonly IProductService _productService;
+
+        public ProductsController(IProductService productService) {
+            _productService = productService;
+        }
+
         public async Task<IActionResult> Index() {
             return await Task.Run(() => {
-                var productsRepo = new ProductRepository();
-                var productsListViewModel = new ProductsListViewModel(
-                    productsRepo.FindAll()
-                );                
+                var delayedResponse = _productService.DoGetProducts();
+                delayedResponse.Wait();
+                DoGetProductsResponse doGetProductsResponse = delayedResponse.Result;
+                IEnumerable<ProductModel> products = doGetProductsResponse.Products;
+                
+                var productsListViewModel = 
+                    doGetProductsResponse.IsSuccess ? 
+                        new ProductsListViewModel( products ) : 
+                        new ProductsListViewModel( doGetProductsResponse.Message );
                 return View(productsListViewModel);
             });
         }
+
+        // [HttpPost]
+        // public async Task<IActionResult> Index([FromBody] ProductsDTO request) {
+        //     var updatedProducts = await _productService.DoSave(request);
+        //     return new ObjectResult(updatedProducts);
+        // }
 
     }
 }

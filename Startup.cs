@@ -10,6 +10,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using aspnet_core_mvc_kojs_demo_crud.Repositories;
+using aspnet_core_mvc_kojs_demo_crud.Services;
+using aspnet_core_mvc_kojs_demo_crud.Services.Implementations;
+
 namespace aspnet_core_mvc_kojs_demo_crud
 {
     public class Startup
@@ -33,6 +37,9 @@ namespace aspnet_core_mvc_kojs_demo_crud
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSingleton(typeof(IProductRepository), typeof(ProductRepository));
+            services.AddSingleton(typeof(IProductService), typeof(ProductServiceImpl));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

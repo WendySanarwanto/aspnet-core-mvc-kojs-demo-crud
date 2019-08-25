@@ -1,9 +1,18 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
+using aspnet_core_mvc_kojs_demo_crud.DTO;
 using aspnet_core_mvc_kojs_demo_crud.Models;
 
 namespace aspnet_core_mvc_kojs_demo_crud.Repositories {
-    public class ProductRepository {
+    public class ProductRepository: IProductRepository {
+        // public Task<ProductsDTO> DoSave(ProductsDTO request)
+        // {
+        //     return Task.Run(() => {
+        //         return 
+        //     });
+        // }
+
         public IEnumerable<ProductModel> FindAll() {
             // TODO: Get them from datasource
             return new []{
