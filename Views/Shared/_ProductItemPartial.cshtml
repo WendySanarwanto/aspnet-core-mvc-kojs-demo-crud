@@ -1,0 +1,27 @@
+<script type="text/html" id="product_template">
+    <div class="row">
+        <div class="col-md-1 text-center list-cell">
+            @Html.Label(string.Empty, string.Empty, new { @data_bind = "text: Number", @style = "margin-top: 1em" })
+            <!-- <label data-bind="text: Number" style="margin-top: 1em"></label> -->
+        </div>
+        <div class="col-md-6 list-cell">
+            @Html.TextBox("ProductName", null, new { @class = "form-control", @data_bind = "value: Name", @style = "margin-top: 0.3em", @aria_label = "Product's Name" })
+        </div>
+        <div class="col-md-3 list-cell">
+            <div class="input-group" style="margin-top: 0.3em" >
+                <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                </div>
+                @Html.TextBox("Price", null, new { @class = "form-control", @data_bind = "value: Price", @aria_label = "Amount (to the nearest dollar)" })
+            </div>
+        </div>
+        <div class="col-md-1 list-cell">
+            @Html.TextBox("Quantity", null, new { @class = "form-control", @data_bind = "value: Price", @style="margin-top: 0.3em", @aria_label = "Amount (to the nearest dollar)" })
+        </div>
+        <div class="col-md-1 text-center list-cell">
+            <button type="button" class="btn btn-danger" title="Delete" style="margin-top: 0.5em" data-bind="click: $parent.removeProduct">
+                <i class="fa fa-trash-alt"></i>
+            </button>
+        </div>
+    </div>
+</script>
